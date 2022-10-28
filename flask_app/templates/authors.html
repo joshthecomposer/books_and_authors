@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>TEST</title>
+</head>
+<body>
+    <div class="container col-10 d-flex justify-content-end">
+        <a href="/books">Add Book</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col gap-5 col-5">
+            <hr>
+            <h1>New Author</h1>
+            <div class="form-group">
+                <form action="/author/create" method="POST">
+                    <label for="name">Name:</label>
+                    <input class="form-control  my-3" type="text" name="name">
+                    <input class="btn btn-secondary my-3" type="submit" value="Create">
+                </form>
+            </div>
+            <hr>
+        </div>
+        <div class="col col-5">
+            <hr>
+            <h1>Author List</h1>
+            {%for a in authors%}
+            <div class="my-3">
+                <a href="/author/view/{{a.id}}">{{a.name}}</a>
+            </div>
+            {%endfor%}
+            <hr>
+        </div>
+    </div>
+</body>
+</html>

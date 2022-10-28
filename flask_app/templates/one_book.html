@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <title>{{one_book.name}}</title>
+</head>
+<body>
+    <div class="container col-10 d-flex justify-content-end">
+        <a href="/">Home</a>
+    </div>
+    <div class="row d-flex justify-content-center">
+        <div class="col gap-5 col-5">
+            <hr>
+            <h1>{{one_book.title}}</h1>
+                <table class="table">
+                    <thead>
+                        <th>Authors who like this book:</th>
+                    </thead>
+                    <tbody>
+                        {%for f in favorites%}
+                        <tr>
+                            <td>{{f.name}}</td>
+                        </tr>
+                        {%endfor%}
+                    </tbody>
+                </table>
+            <hr>
+        </div>
+        <div class="col col-5">
+            <hr>
+            <h1>Add Author to Book</h1>
+            <form action="/book/favorite" method="POST">
+                <input type="hidden" name="book_id" value="{{ one_book.id }}">
+                <select class="form-control" name="favorite_author">
+                    <option value="" disabled selected>Select an author</option>
+                    {%for n in non_favorites%}
+                    <option value="{{n['id']}}">{{n['name']}}</option>
+                    {%endfor%}
+                </select>
+                <input class="btn btn-secondary my-3" type="submit" value="Create">
+            </form>
+            <hr>
+        </div>
+    </div>
+</body>
+</html>
